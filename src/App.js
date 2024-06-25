@@ -10,8 +10,7 @@ import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import "./App.css";
-// import characters from './protagonists.json'
+import characters from './protagonists.json'
 
 function App() {
   return (
@@ -63,43 +62,41 @@ function App() {
           justifyContent="center"
           alignItems="flex-start"
         >
-          <Grid item xs={12} md={4}>
+          {characters.map((character) => 
+            <Grid item xs={12} md={4}>
             <Card>
               <CardMedia
                 component="img"
                 height="350px"
-                image={"https://i.imgur.com/56chgMj.png"}
+                image={character.pic}
               />
               <CardHeader
-                title={"Miles Morales"}
+                title={character.title}
                 titleTypographyProps={{ align: "center" }}
                 sx={{ mt: 1 }}
               />
               <CardContent sx={{ pt: 0 }}>
-                <ul>
+              <ul>
+                {character.description.map((descriptionBulletPoint) => 
                   <Typography component="li">
-                    Definitely Not Spiderman
+                    {descriptionBulletPoint}
                   </Typography>
-                  <Typography component="li">
-                    "Lanky Puberty Boy" vibes
-                  </Typography>
-                  <Typography component="li">Can't do it on demand</Typography>
-                  <Typography component="li">Elite music taste</Typography>
-                </ul>
+                )}
+              </ul>
               </CardContent>
               <CardActions>
                 <Button
                   variant="contained"
-                  sx={{ px: 6, mx: "auto" }}
-                  // I'm trying to use custom CSS defined in the file App.css,
-                  // but it isn't working. Why, and how can I fix it?
-                  className="characterButton"
+                  sx={{ px: 6, mx: "auto", border: "5px solid red" }}
                 >
                   Vote
                 </Button>
               </CardActions>
             </Card>
           </Grid>
+          )}
+
+          
         </Grid>
       </Container>
     </div>

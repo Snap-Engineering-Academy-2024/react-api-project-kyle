@@ -1,16 +1,17 @@
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
+// import Card from "@mui/material/Card";
+// import CardActions from "@mui/material/CardActions";
+// import CardContent from "@mui/material/CardContent";
+// import CardHeader from "@mui/material/CardHeader";
+// import CardMedia from "@mui/material/CardMedia";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import characters from './protagonists.json'
+import CharacterCard from "./CharacterCard";
 
 function App() {
   return (
@@ -63,37 +64,12 @@ function App() {
           alignItems="flex-start"
         >
           {characters.map((character) => 
-            <Grid item xs={12} md={4}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="350px"
-                image={character.pic}
-              />
-              <CardHeader
-                title={character.title}
-                titleTypographyProps={{ align: "center" }}
-                sx={{ mt: 1 }}
-              />
-              <CardContent sx={{ pt: 0 }}>
-              <ul>
-                {character.description.map((descriptionBulletPoint) => 
-                  <Typography component="li">
-                    {descriptionBulletPoint}
-                  </Typography>
-                )}
-              </ul>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  sx={{ px: 6, mx: "auto", border: "5px solid red" }}
-                >
-                  Vote
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
+            <CharacterCard
+            title={character.title}
+            pic={character.pic}
+            bulletPoint={character.description}
+          >
+          </CharacterCard>
           )}
 
           

@@ -7,8 +7,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Grid";
 import CardHeader from "@mui/material/CardHeader";
+import { useState } from "react";
 
 export default function CharacterCard(props) {
+  let [vote, setVote] = useState(0);
+
   return (
     <Grid item xs={12} md={4}>
             <Card variant="outlined">
@@ -24,15 +27,22 @@ export default function CharacterCard(props) {
               />
               <CardContent sx={{mt: 0}}>
                 {props.bulletPoint.map((descriptionBulletPoint) => 
-                  <Typography sx={{p: .5}}>
+                  <Typography sx={{p: .5}} key={descriptionBulletPoint}>
                     {descriptionBulletPoint}
                   </Typography>
                 )}
+
+                <Typography sx={{mt: 2}}>
+                  Votes: {vote}
+                </Typography>
               </CardContent>
               <CardActions>
                 <Button
                   variant="contained"
                   sx={{ px: 6, mx: "auto", backgroundColor: "black"}}
+                  onClick={() => {
+                    setVote(vote + 1)
+                  }}
                 >
                   Vote
                 </Button>

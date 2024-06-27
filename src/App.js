@@ -1,10 +1,5 @@
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-// import Card from "@mui/material/Card";
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import CardHeader from "@mui/material/CardHeader";
-// import CardMedia from "@mui/material/CardMedia";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,8 +7,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import characters from './protagonists.json'
 import CharacterCard from "./CharacterCard";
+import { useState } from "react";
 
 function App() {
+  let [myFact, setMyFact] = useState("Maine is the closest US state to the continent of Africa");
+
   return (
     <div className="App">
       <CssBaseline />
@@ -31,9 +29,11 @@ function App() {
             href="#"
             variant="outlined"
             sx={{ my: 1, mx: 1.5 }}
-            onClick={() => alert("Boop!")}
+            onClick={() => {
+              fetchFact();
+            }}
           >
-            Button
+            Get Fact
           </Button>
         </Toolbar>
       </AppBar>
@@ -51,8 +51,9 @@ function App() {
           align="center"
           color="text.secondary"
           sx={{ mx: 10 }}
+          id="factButton"
         >
-          Hmm, seems like we're missing some of the other protagonists.
+          {myFact}
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -68,15 +69,29 @@ function App() {
             title={character.title}
             pic={character.pic}
             bulletPoint={character.description}
+            key={character.description}
           >
           </CharacterCard>
           )}
 
-          
         </Grid>
       </Container>
     </div>
   );
+
+  function fetchFact(){
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    
+    fetch("https://uselessfacts.jsph.pl/api/v2/facts/random", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setMyFact(myFact = result.text)
+      })
+      .catch((error) => console.error(error));
+  }
 }
 
 export default App;

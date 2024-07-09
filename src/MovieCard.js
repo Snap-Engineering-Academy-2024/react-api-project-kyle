@@ -9,44 +9,28 @@ import Grid from "@mui/material/Grid";
 import CardHeader from "@mui/material/CardHeader";
 import { useState } from "react";
 
-export default function CharacterCard(props) {
+export default function MovieCard(props) {
   let [vote, setVote] = useState(0);
 
   return (
-    <Grid item xs={12} md={4}>
+    <Grid item xs={12} md={6}>
             <Card variant="outlined">
               <CardMedia
                 component="img"
-                height="350px"
-                image= {props.pic}
+                image= {props.image}
               />
-              <CardHeader
+              {/* <CardHeader
                 title= {props.title}
                 titleTypographyProps={{ align: "left" }}
                 sx={{ mt: 1, pb: 0}}
               />
               <CardContent sx={{mt: 0}}>
-                {props.bulletPoint.map((descriptionBulletPoint) => 
-                  <Typography sx={{p: .5}} key={descriptionBulletPoint}>
-                    {descriptionBulletPoint}
-                  </Typography>
-                )}
-
-                <Typography sx={{mt: 2}}>
-                  Votes: {vote}
+                <Typography>
+                  Metacritic: {props.metacritic} {<br></br>}
+                  imdb: {props.imdb} {<br></br>}
+                  Rotten Tomatoes: {props.rottentomatoes}
                 </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  sx={{ px: 6, mx: "auto", backgroundColor: "black"}}
-                  onClick={() => {
-                    setVote(vote + 1)
-                  }}
-                >
-                  Vote
-                </Button>
-              </CardActions>
+              </CardContent> */}
             </Card>
           </Grid>
   );
